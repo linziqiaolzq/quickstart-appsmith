@@ -1,5 +1,5 @@
 Service:
-  RegionId: cn-hangzhou
+  RegionId: ap-southeast-1
   DeployType: ros
   OperationMetadata:
     StatusOperationConfigs:
@@ -26,6 +26,7 @@ Service:
           - cn-wulanchabu
           - cn-hangzhou
           - cn-shanghai
+          - cn-shanghai-cloudspe
           - cn-nanjing
           - cn-shenzhen
           - cn-heyuan
@@ -46,6 +47,7 @@ Service:
           - eu-west-1
           - eu-central-1
           - me-east-1
+          - me-central-1
   ServiceType: private
   ServiceInfo:
     Locale: zh-CN
@@ -56,5 +58,18 @@ Artifact:
     ArtifactType: File
     ArtifactName: linziqiaolzq_quickstart-appsmith-docker-compose
     ArtifactProperty:
-      RegionId: cn-hangzhou
+      RegionId: ap-southeast-1
       Url: 'resources/artifact_resources/docker_compose.tar'
+  Artifact_2:
+    ArtifactType: AcrImage
+    ArtifactName: AcrImage-appsmith-appsmith-ce
+    ArtifactProperty:
+      RepoName: ${AcrImageBuilder.AcrImage_1.RepoName}
+      Tag: ${AcrImageBuilder.AcrImage_1.Tag}
+      RepoType: Public
+AcrImageBuilder:
+  AcrImage_1:
+    BuildType: DockerRepo
+    DockerRepoUrl: index.docker.io/appsmith/appsmith-ce:release
+    RepoName: appsmith/appsmith-ce
+    Tag: release
